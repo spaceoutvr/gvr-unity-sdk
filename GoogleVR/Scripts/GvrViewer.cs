@@ -549,8 +549,9 @@ public class GvrViewer : MonoBehaviour {
   /// Add a StereoController to any camera that does not have a Render Texture (meaning it is
   /// rendering to the screen).
   public static void AddStereoControllerToCameras() {
-    for (int i = 0; i < Camera.allCameras.Length; i++) {
-      Camera camera = Camera.allCameras[i];
+    //for (int i = 0; i < Camera.allCameras.Length; i++) {
+    //  Camera camera = Camera.allCameras[i];
+    Camera camera = Camera.main; // SPACEOUT:: only duplicate main Camera
       if (camera.targetTexture == null &&
           camera.cullingMask != 0 &&
           camera.GetComponent<StereoController>() == null &&
@@ -559,7 +560,7 @@ public class GvrViewer : MonoBehaviour {
           camera.GetComponent<GvrPostRender>() == null) {
         camera.gameObject.AddComponent<StereoController>();
       }
-    }
+    //}
   }
 #endif  // !UNITY_HAS_GOOGLEVR || UNITY_EDITOR
 
